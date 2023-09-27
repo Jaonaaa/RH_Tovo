@@ -1,7 +1,8 @@
 import Client from "pg";
-import { getConnectionPg } from "../connection/Connection.js";
+import { getConnectionPg } from "../../connection/Connection.js";
+import { buildResponse } from "../../utils/Status.js";
 
-const departement = {
+export const departement = {
   id: 0,
   nom: "",
 };
@@ -19,27 +20,39 @@ export const getAllDepartement = async () => {
   }
   return rowsResult;
 };
-
+/**
+ *
+ * @param {String} name
+ * @returns
+ */
 export const insertDepartement = async (name) => {
   const client = await getConnectionPg();
+  let response = {};
   try {
     let exist = await checkDepartementAlreadyExists(client, name);
+
     if (!exist) {
+      await client.query("BEGIN TRANSACTION");
       await client.query("INSERT INTO departement VALUES (default, $1)", [
         name,
       ]);
+      response = buildResponse("good", `Département enregistré`, []);
     } else {
-      console.log("Existe Déja");
+      response = buildResponse(
+        "error",
+        `Département ${name} already exists`,
+        []
+      );
     }
   } catch (err) {
+    await client.query("ROLLBACK");
     throw new Error(err);
   } finally {
     client.end();
   }
+  return response;
 };
-
 /**
- *
  * @param {Client.Client} client
  * @param {String} name
  */

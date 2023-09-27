@@ -6,15 +6,9 @@
     <title>App</title>
   </head>
   <body>
-    <form
-      action="/insertDepartement"
-      enctype="multipart/form-data"
-      method="post"
-      id="po"
-    >
-      <input type="text" name="test" />
-      <input type="text" name="other" />
-      <input type="file" name="file" id="file" />
+    <form action="/addNewDepartement" method="post" id="po">
+      <label for="">New Departement</label>
+      <input type="text" name="departement_name" />
       <button>Send</button>
     </form>
   </body>
@@ -25,7 +19,7 @@
       let data = new FormData(e.target);
       console.log(...data);
       try {
-        const res = await fetch("/uploads", {
+        const res = await fetch("/addNewDepartement", {
           method: "POST",
           body: data,
         });
