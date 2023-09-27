@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App</title>
+  </head>
+  <body>
+    <form
+      action="/insertDepartement"
+      enctype="multipart/form-data"
+      method="post"
+      id="po"
+    >
+      <input type="text" name="test" />
+      <input type="text" name="other" />
+      <input type="file" name="file" id="file" />
+      <button>Send</button>
+    </form>
+  </body>
+  <script>
+    let form = document.getElementById("po");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let data = new FormData(e.target);
+      console.log(...data);
+      try {
+        const res = await fetch("/uploads", {
+          method: "POST",
+          body: data,
+        });
+
+        const resData = await res.json();
+
+        console.log(resData);
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
+  </script>
+</html>
