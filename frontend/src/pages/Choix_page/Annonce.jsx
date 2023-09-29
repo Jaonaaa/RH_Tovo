@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Nav_bar } from "./../../Composant/jsx/nav_bar";
-import  Card  from "./../../Composant/jsx/card";
+import  {Card}  from "./../../Composant/jsx/card";
 import Filtre from "../../Composant/jsx/Filtre";
 import HeaderAnnonce from '../../Composant/jsx/headerAnnonce';
 import ContentAnnonce from '../../Composant/jsx/contentAnnonce';

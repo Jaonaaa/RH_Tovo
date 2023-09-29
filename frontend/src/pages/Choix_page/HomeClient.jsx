@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nav_bar } from "./../../Composant/jsx/nav_bar";
-import  Card  from "./../../Composant/jsx/card";
+import  {Card,Card1}  from "./../../Composant/jsx/card";
 import {ContentInfo1,ContentInfo2} from "./../../Composant/jsx/content_information"
 
 
@@ -30,7 +30,7 @@ function HomeClient() {
 
     <div className='box-all-content'>
         {datas.map((data)=>
-          <Card poste={data.poste} departement={data.departement} description={data.description} />
+          <Card1 poste={data.poste} departement={data.departement} description={data.description} />
         )}  
     </div>
 
