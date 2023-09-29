@@ -1,0 +1,34 @@
+/* bloc texte */
+
+.bloc_texte{
+    /* background-color: red; */
+    margin: 20px 15px;
+}
+.titre-mission,
+.titre_bloc{
+    font-size: 20px;
+    margin-bottom: 15px ;
+}
+.titre_bloc::before
+.titre-mission::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Ajustez cette valeur pour contrôler l'espacement entre le texte et le soulignement */
+    width: 100%;
+    height: 3px; /* Ajustez la hauteur du soulignement ici */
+    background-color: red; /* Couleur du soulignement */
+    border-radius: 10px; /* Pour créer un effet ondulé */
+}
+
+.description_poste{
+    font-size: 15px;
+}
+.box-mission{
+    /* background-color: yellow; */
+    margin: 20px 15px;
+}
+.box-mission li{
+    margin-left: 50px;
+    margin-top: 10px;
+}

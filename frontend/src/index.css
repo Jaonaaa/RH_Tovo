@@ -1,0 +1,42 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), url("./assets/css/index.css");
+}
+@font-face {
+  font-family: "Sora";
+  src: local("Sora"), url("./assets/font/Sora/static/Sora-Regular.ttf");
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Sora", sans-serif;
+}
+.box-offer{
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+.listOffer{
+  width: 40%;
+  overflow-y: scroll;
+  height: 70vh;
+}
+.listOffer::-webkit-scrollbar{
+  display: none;
+}
+.detailOffer{
+  /* border: 1px solid lightgray; */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  width: 60%;
+  height: 500px;
+  border-radius: 6px;
+  overflow-y: scroll;
+}
+.detailOffer::-webkit-scrollbar{
+  display: none;
+}

@@ -1,0 +1,59 @@
+
+.box{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border-radius: 10px;
+    height: 300px;
+    
+}
+.box-component{
+    background-color:var(--theme) ;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: 0.8s;
+    border-radius: 10px;
+    
+}
+.box:hover .box-component{
+    height: 30%;
+}
+.box:hover .box-descri{
+    height: 70%;
+    opacity: 1;
+}
+
+.box-descri{
+    display: flex;
+    transition:height 0.8s,opacity 0.4s;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 0%;
+    opacity: 0;
+}
+.box-back-office,
+.box-client{
+   margin: 2vw;
+}
+.box-descri a{
+    color: var(--theme);
+}
+.decri-content,
+.descri-titre{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+.decri-content{
+    color: var(--theme);
+}
+.svg{
+    width: 50%;
+}
+
+

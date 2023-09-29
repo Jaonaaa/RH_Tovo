@@ -1,0 +1,78 @@
+.box-all-content{
+    display: flex;
+    width:100%;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    margin: 0 0 150px 0;
+    /* justify-content: center; */
+}
+.box-all-content::-webkit-scrollbar{
+    display: none;
+}
+.box-card{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 1%;
+    min-width: 450px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.card-header{
+    display: flex;
+}
+.card-header img{
+    width: 100px;
+    height: 50px;
+}
+.card-departement{
+    background-color: var(--theme);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: 23.5%;
+    transform: rotate(60deg);
+    color: white;
+    top: -18px;
+    right: -16px;
+    
+}
+.card-departement span{
+    transform: rotate(-60deg);
+}
+.card-title{
+    font-size: 25px;
+    /* font-weight: bold; */
+    margin: 20px 15px;
+}
+.card-description{
+    margin: 10px 15px;
+    height: 50px;
+    width: 82%;   
+}
+.box-icon img{
+    /* background:red; */
+    width: 45px;
+    height: 45px;
+    position: relative;
+    left: 88%;
+}
+.titre {
+    position: relative;
+    width: fit-content;
+    font-size: 28px;
+    margin: 20px 20px 25px 20px;
+}
+
+.titre::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Ajustez cette valeur pour contrôler l'espacement entre le texte et le soulignement */
+    width: 100%;
+    height: 3px; /* Ajustez la hauteur du soulignement ici */
+    background-color: var(--theme); /* Couleur du soulignement */
+    border-radius: 10px; /* Pour créer un effet ondulé */
+}

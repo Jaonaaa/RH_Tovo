@@ -1,0 +1,50 @@
+.cv_container{
+    width: fit-content;
+    padding: 10px;
+    margin: auto;
+}
+.box-select,
+.box-input{
+    /* background-color: rgb(210, 253, 247); */
+    margin: 10px auto;
+    /* border: 1px solid lightgray; */
+    border-radius: 6px;
+}
+.label-texte{
+    
+    font-size: 12px;
+    margin: 5px 8px;
+    color: var(--theme);
+    
+    
+}
+.box-select select,
+.box-input input{
+    
+    width: 500px;
+    padding: 17px 18px;
+    margin: 0 10px 10px 10px;
+    border: none;
+    outline: none;
+    /* background-color: rgb(231, 231, 231); */
+    background-color: whitesmoke;
+    border-radius: 6px;
+
+    /* background-color:rgb(210, 253, 247); */
+    /* border-bottom:1px solid lightgray ; */
+}
+.button-container{
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+.btn-perso{
+    border: none;
+    padding:12px 20px;
+    color: white;
+    background-color: var(--theme);
+    border-radius: 6px;
+    margin-right: 10px;
+}
