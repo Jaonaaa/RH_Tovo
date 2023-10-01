@@ -6,7 +6,7 @@ export const getConnectionPg = async () => {
     user: "postgres",
     host: "localhost",
     database: "rh_tovo",
-    password: "popo",
+    password: "0000",
     port: 5432,
   });
   // client.on("connect", () => {

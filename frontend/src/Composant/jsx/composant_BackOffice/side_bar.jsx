@@ -11,7 +11,7 @@ import './../../css/SideBar.css'
                     }else if(item.texte=="Statistique"){
 
                     }else if(item.texte=="Annonce"){
-                        setNumP(2)
+                        setNumP(3)
                     }
                 }}>
                     <div className='active-element'>.</div>

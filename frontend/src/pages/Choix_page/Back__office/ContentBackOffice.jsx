@@ -12,6 +12,18 @@ function AjoutService() {
     </form>
   </>
 }
+function DemandeOffre({idDep}) {
+  return <>
+    <form className='from_demande_offre' action="" method=''>
+      <InputPerso type={"texte"} name={"poste"} classN={"inputPost"} labelTexte={"Poste"}/>
+      <InputPerso type={"number"} name={"volumeHoraire"} classN={"inputVolumeHoraire"} labelTexte={"Volume horaire"}/>
+      <InputPerso type={"number"} name={"hommeJour"} classN={"inputHommeJour"} labelTexte={"Volume hommme/jour"}/>
+      <TextAreaPerso labelTexte={"Tache(s)"}/>
+      <InputPerso type={"hidden"} name={"idDep"} classN={"idDep"}  value={Math.abs(idDep)}/>
+      <ButtonPerso texte={"Valider"} classN={"btn-perso"} func={""}/>
+    </form>
+  </>
+}
 function filtreD(datas,category) {
   if (category==='Tous') {
     return datas;
@@ -44,41 +56,60 @@ function Annonce1({items,setNumP,dataAnnonce}) {
 }
 
 
-function ChangePage({num,setNumP,items,items_annonce,items_service}){
- 
+
+function ChangePage({num,setNumP,items,items_annonce,items_service,choixService,setChoixService}){
+  //miditra anaty departement
+  if(num>-1&&choixService===items_service[num].departement){
+    console.log(num);
+    return<>
+      <DemandeOffre idDep={num}/>
+    </>
+  }
+
   if(num==-1){
     return <>
     <Departement1 items={items} setNumP={setNumP}/>
   </>
   }else if(num==0){
+    
     return <>
       <AjoutService/>
     </>
   }else if(num==1){
+    
     return <>
-      <Card_Service items={items_service}/>
+      <Card_Service items={items_service} setNumP={setNumP} setChoixService={setChoixService}/>
     </>
   }else if(num==2){
+   
+    return <>
+      <Annonce1 items={items_service} dataAnnonce={items_annonce}/>
+    </>
+  }else if(num==3){
+   
     return <>
       <Annonce1 items={items_service} dataAnnonce={items_annonce}/>
     </>
   }
+  
+  
 }
-function ContentBackOffice({items,headerElement,items_service,items_annonce,numPage,setNumP}) {
+function ContentBackOffice({items,headerElement,items_service,items_annonce,numPage,setNumP,choixService,setChoixService}) {
+  
   return <>
   <div className='box-backOffice'>
     <div className='container-header'>
          {headerElement.map(item=>
-         
+        
             <div className='header-element'>
-             <div className='header-content'>{item}</div>
-             {items.length>1?'':<i className='fas fa-chevron-right'></i>}
+             <div className='header-content'>{item.texte}</div>
+             {item.length>1?'':<i className='fas fa-chevron-right'></i>}
            </div>
            
           )}
     </div>
     <div className='container-contentBackOffice'>
-      <ChangePage num={numPage} items={items} setNumP={setNumP} items_annonce={items_annonce} items_service={items_service} />
+      <ChangePage num={numPage} items={items} setNumP={setNumP} items_annonce={items_annonce} items_service={items_service} choixService={choixService} setChoixService={setChoixService} />
     </div>
   </div>
     

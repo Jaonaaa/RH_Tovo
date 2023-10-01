@@ -7,12 +7,12 @@ import { useState } from 'react'
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 
-export function InputPerso({type,name,classN,labelTexte}){
+export function InputPerso({type,name,classN,labelTexte,value}){
  return <>
    <div className='box-input'>
     <div className='label-texte'>{labelTexte}</div>
     
-    <input className={classN} type={type} name={name} />
+    <input className={classN} type={type} name={name} value={value}/>
   </div>
  </>
 }

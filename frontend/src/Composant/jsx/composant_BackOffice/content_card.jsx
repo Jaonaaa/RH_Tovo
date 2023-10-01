@@ -25,14 +25,17 @@ export function Content_card({items,setNumP}) {
   </>
 }
 
-export function Card_Service({items}) {
+export function Card_Service({items,setNumP,setChoixService}) {
   
   
   return <>
     
         {items.map((item)=>
         item.departement=='Tous'?'':<>
-        <div className='container-card'>
+        <div className='container-card' onClick={()=>{
+          setNumP(item.id)
+          setChoixService(item.departement)
+        }}>
             <div className='icon-card'>
               <img src={item.icon} alt="" />
             </div>

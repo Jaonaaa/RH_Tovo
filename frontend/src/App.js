@@ -1,6 +1,7 @@
 
 import './App.css';
 import './assets/css/index.css';
+import Fetch from './Fetch';
 import Annonce from './pages/Choix_page/Annonce';
 import Cv from './pages/Choix_page/Cv';
 
@@ -17,6 +18,7 @@ function App() {
   return (
 
     <>
+    {/* <Fetch/> */}
   <Routes>
     <Route path="/" element={<HomePage/>}/>
 
