@@ -1,16 +1,20 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import {
-  getAllDepartement,
-  insertDepartement,
-} from "./models/Departement/Departement.js";
-import { buildResponse } from "./utils/Status.js";
+
 import { uploads } from "./Config.js";
+import { routersAdmin } from "./routers/Admin.js";
+import cors from "cors";
 
 const app = express();
 const port = 3202;
-// insertDepartement("Comptabilité & Finance");
+const corsOptions = {
+  origin: "*", // Only allow requests from this origin
+  methods: "GET,POST", // Allow only specific HTTP methods
+  allowedHeaders: "*", // Allow only specific headers
+};
+
+app.use(cors(corsOptions));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,16 +23,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/getAllDepartement", uploads.none(), async (req, res) => {
-  let departement = await getAllDepartement();
-  res.json(buildResponse("good", "", departement));
-});
-
-app.post("/addNewDepartement", uploads.none(), async (req, res) => {
-  let data = req.body;
-  let response = await insertDepartement(data.departement_name);
-  res.json(response);
-});
+routersAdmin(app, uploads);
 
 // mila precisena mitovy am "file" io ny anarana ny <input type="file" name=$$ />
 app.post("/uploads", uploads.array("file"), (req, res) => {
