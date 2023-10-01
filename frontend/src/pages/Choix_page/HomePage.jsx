@@ -13,7 +13,7 @@ function HomePage() {
             <Client/>
             </Link>
 
-            <Link to="/Back_office" style={linkColor}>
+            <Link to="/Back_office/HomeBackOffice" style={linkColor}>
             <Back_office/>
             </Link>
 

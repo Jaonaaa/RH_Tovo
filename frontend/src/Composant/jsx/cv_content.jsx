@@ -7,7 +7,7 @@ import { useState } from 'react'
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 
-function InputPerso({type,name,classN,labelTexte}){
+export function InputPerso({type,name,classN,labelTexte}){
  return <>
    <div className='box-input'>
     <div className='label-texte'>{labelTexte}</div>
@@ -16,7 +16,7 @@ function InputPerso({type,name,classN,labelTexte}){
   </div>
  </>
 }
-function ButtonPerso({texte,classN,func}) {
+export function ButtonPerso({texte,classN,func}) {
   return <>
   <div className='button-container'>
     <button className={classN} onClick={func}>{texte}</button>
@@ -24,7 +24,7 @@ function ButtonPerso({texte,classN,func}) {
     
   </>
 }
-function SelectPerso({tabData,labelTexte}) {
+export function SelectPerso({tabData,labelTexte}) {
   return <>
   <div className='box-select'>
     <div className='label-texte'>{labelTexte}</div>
@@ -38,7 +38,7 @@ function SelectPerso({tabData,labelTexte}) {
   </>
 }
 
-function TextAreaPerso({labelTexte}) {
+export function TextAreaPerso({labelTexte}) {
   return <>
     <div className='box-textArea'>
         <div className='label-texte'>{labelTexte}</div>
@@ -151,7 +151,6 @@ function Cv_content() {
   const[changePage,setChangeP] = useState(1)
   const handleChange = ()=>{
     setChangeP(2)
-
   }
   return <> 
     <div className='cv_container'>
