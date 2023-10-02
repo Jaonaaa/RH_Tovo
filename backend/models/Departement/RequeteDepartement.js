@@ -1,5 +1,6 @@
 import getConnectionPg from "../../connection/Connection.js";
 import { buildResponse } from "../../utils/Status.js";
+import { getTimeNow } from "../../utils/Time.js";
 import {
   details_requete_departement,
   registerDepartementRequestDetails,
@@ -28,7 +29,7 @@ export const registerDepartementRequest = async (data, dataDetails) => {
     ////
     await client.query(
       "INSERT INTO requete_departement VALUES (default,$1,$2,$3)",
-      [id_details_requete_departement, data.date_requete, data.id_departement]
+      [id_details_requete_departement, getTimeNow(), data.id_departement]
     );
     await client.query("COMMIT");
 
