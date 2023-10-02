@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS details_requete_departement (
     id SERIAL PRIMARY KEY ,
     vol_tache NUMERIC(20,2),
     vol_horaire NUMERIC(20,2),
-    vol_hommme_jour NUMERIC(20)
+    vol_hommme_jour NUMERIC(20),
+    taches VARCHAR(255) ,
+    poste VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS requete_departement (
