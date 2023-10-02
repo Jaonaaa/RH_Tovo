@@ -4,7 +4,7 @@ import './../../css/SideBar.css'
 
     function SideBar_item({items,setNumP}) {
         return <>
-            {items.map((item)=>
+            {items.map((item,key)=>
                 <div className='sideBar-item' onClick={()=>{
                     if(item.texte=="Département"){
                         setNumP(-1)

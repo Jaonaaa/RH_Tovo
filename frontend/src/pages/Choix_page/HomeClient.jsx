@@ -29,8 +29,8 @@ function HomeClient() {
     <div className='titre'>Annonces</div>
 
     <div className='box-all-content'>
-        {datas.map((data)=>
-          <Card1 poste={data.poste} departement={data.departement} description={data.description} />
+        {datas.map((data,index)=>
+          <Card1 key={index} poste={data.poste} departement={data.departement} description={data.description} />
         )}  
     </div>
 

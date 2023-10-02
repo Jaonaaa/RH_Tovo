@@ -24,8 +24,8 @@ function DropDown({id,tab=[],setCategory}) {
         </div>
 
         <div className={`box-content ${openD}`}>
-          {datas.map(data=>
-              <div className='dropdown-content' onClick={()=>{
+          {datas.map((data,index)=>
+              <div key={index} className='dropdown-content' onClick={()=>{
                 setCategory(data.departement)
               }}>{data.departement}</div>
           )}
