@@ -37,6 +37,7 @@ export const insertDepartement = async (name) => {
         name,
       ]);
       response = buildResponse("good", `Département enregistré`, []);
+      await client.query("COMMIT");
     } else {
       response = buildResponse(
         "error",
