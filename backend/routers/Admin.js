@@ -28,6 +28,7 @@ export const routersAdmin = (app, uploads) => {
   // Requete par departement
   app.post("/registerRequestDepartement", uploads.none(), async (req, res) => {
     let data = JSON.parse(req.body.data);
+    console.log(data);
     let response = await registerDepartementRequest(
       data.requete_d,
       data.details_req

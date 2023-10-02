@@ -35,6 +35,7 @@ export const registerDepartementRequest = async (data, dataDetails) => {
 
     response = buildResponse("good", "Requete de departement enregistrer");
   } catch (err) {
+    console.log(err);
     await client.query("ROLLBACK");
     response = buildResponse("error", err.details);
   } finally {
