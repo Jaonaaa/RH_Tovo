@@ -5,7 +5,7 @@ export function Content_card({items,setNumP}) {
   
   return <>
     
-        {items.map((item)=>
+        {items.map((item,key)=>
         <>
         <div className='container-card' onClick={()=>{
           setNumP(item.id)

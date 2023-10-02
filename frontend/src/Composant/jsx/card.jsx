@@ -4,7 +4,9 @@ import "./../../assets/fontawesome-5/css/all.min.css";
 import { Link } from 'react-router-dom'
 import './../css/Card.css'
 import  Fleche  from "./../../assets/img/fleche.png";
-
+function couleurDepartement() {
+    
+}
 
 export function Card1({poste,departement,description}) {
   return <>

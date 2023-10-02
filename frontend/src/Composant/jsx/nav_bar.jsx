@@ -29,9 +29,9 @@ export function Nav_bar({search_bar}) {
       </div>
       
       <div className='nav-component'>
-        {datas.map((data)=> 
-          <Link to={data.path}>
-            <div className='nav-content'>{data.label}</div>
+        {datas.map((data,index)=> 
+          <Link key={index} to={data.path}>
+            <div  className='nav-content'>{data.label}</div>
           </Link>  
         )}
       </div>

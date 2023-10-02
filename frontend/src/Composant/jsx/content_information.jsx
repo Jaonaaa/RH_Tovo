@@ -18,7 +18,7 @@ export function ContentInfo1() {
     </div>
     <div className='right-content'>
         <div className='box-all-dep'>
-            {allDep.map(dep=>
+            {allDep.map((dep,key)=>
                 <div className='dep'>{dep}</div>
             )}
         </div>

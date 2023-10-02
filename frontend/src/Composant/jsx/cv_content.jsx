@@ -7,19 +7,19 @@ import { useState } from 'react'
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 
-export function InputPerso({type,name,classN,labelTexte,value}){
+export function InputPerso({type,name,classN,labelTexte,value,fonction}){
  return <>
    <div className='box-input'>
     <div className='label-texte'>{labelTexte}</div>
     
-    <input className={classN} type={type} name={name} value={value}/>
+    <input onChange={fonction} className={classN} type={type} name={name} value={value}/>
   </div>
  </>
 }
-export function ButtonPerso({texte,classN,func}) {
+export function ButtonPerso({texte,classN,func,type}) {
   return <>
   <div className='button-container'>
-    <button className={classN} onClick={func}>{texte}</button>
+    <button type={type} className={classN} onClick={func}>{texte}</button>
   </div>
     
   </>
@@ -29,8 +29,8 @@ export function SelectPerso({tabData,labelTexte}) {
   <div className='box-select'>
     <div className='label-texte'>{labelTexte}</div>
     <select name="" id="">
-        {tabData.map(data=>
-          <option value={data.value}>{data.texte}</option>
+        {tabData.map((data,index)=>
+          <option key={index} value={data.value}>{data.texte}</option>
         )}
       </select>
   </div>
@@ -38,11 +38,11 @@ export function SelectPerso({tabData,labelTexte}) {
   </>
 }
 
-export function TextAreaPerso({labelTexte}) {
+export function TextAreaPerso({labelTexte,name,fonction,value}) {
   return <>
     <div className='box-textArea'>
         <div className='label-texte'>{labelTexte}</div>
-        <textarea name="" id="" cols="30" rows="5"></textarea>
+        <textarea value={value} onChange={fonction} name={name} id="" cols="30" rows="5"></textarea>
     </div>
   </>
 }

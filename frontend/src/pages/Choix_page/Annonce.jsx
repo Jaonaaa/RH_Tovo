@@ -54,8 +54,8 @@ function Annonce() {
     <div className='box-offer'>
 
         <div className='listOffer'>
-            {cardData.map((donnee,key)=>
-              donnee.departement=='Tous'?'':<Card id={key} setAnnonce={setID} poste={donnee.poste} departement={donnee.departement} description={donnee.description} />
+            {cardData.map((donnee,index)=>
+              donnee.departement=='Tous'?'':<Card key={index} id={index} setAnnonce={setID} poste={donnee.poste} departement={donnee.departement} description={donnee.description} />
             )} 
       </div>
 
