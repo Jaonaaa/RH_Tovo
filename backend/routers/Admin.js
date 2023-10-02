@@ -22,7 +22,11 @@ export const routersAdmin = (app, uploads) => {
   app.post("/addNewDepartement", uploads.none(), async (req, res) => {
     let data = req.body;
     console.log(data);
-    let response = await insertDepartement(data.departement_name);
+    let response = await insertDepartement(
+      data.departement_name,
+      data.departement_description,
+      data.departement_icon
+    );
     res.json(response);
   });
   // Requete par departement

@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS departement (
     id  SERIAL PRIMARY KEY ,
-    nom VARCHAR(60) 
+    nom VARCHAR(60) ,
+    description VARCHAR(255) ,
+    icon VARCHAR(255) 
 );
 
 CREATE TABLE IF NOT EXISTS details_requete_departement (

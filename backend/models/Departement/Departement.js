@@ -5,6 +5,8 @@ import { buildResponse } from "../../utils/Status.js";
 export const departement = {
   id: 0,
   nom: "",
+  description: "",
+  icon: "",
 };
 
 export const getAllDepartement = async () => {
@@ -25,7 +27,7 @@ export const getAllDepartement = async () => {
  * @param {String} name
  * @returns
  */
-export const insertDepartement = async (name) => {
+export const insertDepartement = async (name, description, icon) => {
   const client = await getConnectionPg();
   let response = {};
   try {
@@ -33,8 +35,10 @@ export const insertDepartement = async (name) => {
 
     if (!exist) {
       await client.query("BEGIN TRANSACTION");
-      await client.query("INSERT INTO departement VALUES (default, $1)", [
+      await client.query("INSERT INTO departement VALUES (default, $1,$2,$3)", [
         name,
+        description,
+        icon,
       ]);
       response = buildResponse("good", `Département enregistré`, []);
       await client.query("COMMIT");
