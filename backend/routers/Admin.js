@@ -3,7 +3,11 @@ import {
   getAllDepartement,
   insertDepartement,
 } from "../models/Departement/Departement.js";
-import { registerDepartementRequest } from "../models/Departement/RequeteDepartement.js";
+import {
+  getListRequest,
+  getListRequestAll,
+  registerDepartementRequest,
+} from "../models/Departement/RequeteDepartement.js";
 import { buildResponse } from "../utils/Status.js";
 import { getTimeNow } from "../utils/Time.js";
 /**
@@ -37,6 +41,16 @@ export const routersAdmin = (app, uploads) => {
       data.requete_d,
       data.details_req
     );
+    res.json(response);
+  });
+  app.post("/getRequestAllDepartement", async (req, res) => {
+    let response = await getListRequestAll();
+    res.json(response);
+  });
+
+  app.post("/getRequestByDepartement", async (req, res) => {
+    let idDepartement = JSON.parse(req.body.idDepartement);
+    let response = await getListRequest(idDepartement);
     res.json(response);
   });
   // Annonce

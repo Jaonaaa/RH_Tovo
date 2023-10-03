@@ -50,3 +50,27 @@ const getLast = async (client) => {
   }
   return rowsResult;
 };
+
+/**
+ *
+ * @param {Number} idRequest
+ * @param {Client.Client} client
+ * @returns
+ */
+export const getDetailsRequest = async (idRequest, client) => {
+  let rowsResult = [];
+  let row = {};
+  try {
+    const result = await client.query(
+      "SELECT * FROM details_requete_departement where id = $1 ",
+      [idRequest]
+    );
+    rowsResult = result.rows;
+    if (rowsResult.length > 0) {
+      row = rowsResult[0];
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+  return row;
+};
