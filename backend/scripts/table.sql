@@ -5,6 +5,14 @@ CREATE TABLE IF NOT EXISTS departement (
     icon VARCHAR(255) 
 );
 
+CREATE TABLE IF NOT EXISTS login_departement(
+    id SERIAL PRIMARY KEY ,
+    nom VARCHAR(60) ,
+    email VARCHAR(120),
+    mdp VARCHAR(100),
+    id_departement INT REFERENCES departement (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS details_requete_departement (
     id SERIAL PRIMARY KEY ,
     vol_tache NUMERIC(20,2),

@@ -3,6 +3,7 @@ import { buildResponse } from "../../utils/Status.js";
 import { getTimeNow } from "../../utils/Time.js";
 import {
   details_requete_departement,
+  getDetailsRequest,
   registerDepartementRequestDetails,
 } from "./DetailsRequeteDepartement.js";
 
@@ -36,6 +37,66 @@ export const registerDepartementRequest = async (data, dataDetails) => {
     response = buildResponse("good", "Requete de departement enregistrer");
   } catch (err) {
     await client.query("ROLLBACK");
+    response = buildResponse("error", err.details);
+  } finally {
+    client.end();
+  }
+  return response;
+};
+
+export const getListRequestAll = async () => {
+  const client = await getConnectionPg();
+  let response = {};
+  try {
+    //
+    let rowsResult = [];
+    ////
+    const result = await client.query("SELECT * FROM requete_departement ");
+    rowsResult = result.rows;
+
+    for (let i = 0; i < rowsResult.length; i++) {
+      rowsResult[i].details = await getDetailsRequest(
+        rowsResult[i]["id_details_requete_departement"],
+        client
+      );
+    }
+
+    response = buildResponse("good", "", rowsResult);
+  } catch (err) {
+    response = buildResponse("error", err.details);
+  } finally {
+    client.end();
+  }
+  return response;
+};
+
+/**
+ *
+ * @param {Number} idDepartement
+ * @returns
+ */
+export const getListRequest = async (idDepartement) => {
+  const client = await getConnectionPg();
+  let response = {};
+  try {
+    //
+    let rowsResult = [];
+    ////
+    const result = await client.query(
+      "SELECT * FROM requete_departement where id_departement = $1",
+      [idDepartement]
+    );
+    rowsResult = result.rows;
+
+    for (let i = 0; i < rowsResult.length; i++) {
+      rowsResult[i].details = await getDetailsRequest(
+        rowsResult[i]["id_details_requete_departement"],
+        client
+      );
+    }
+
+    response = buildResponse("good", "", rowsResult);
+  } catch (err) {
     response = buildResponse("error", err.details);
   } finally {
     client.end();
