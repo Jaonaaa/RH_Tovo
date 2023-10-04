@@ -4,6 +4,7 @@ import Filtre from '../../../Composant/jsx/Filtre'
 import { Card1 } from '../../../Composant/jsx/card'
 import {InputPerso,ButtonPerso,SelectPerso,TextAreaPerso} from './../../../Composant/jsx/cv_content'
 import { useEffect } from 'react'
+import CardAnimate from '../../../Composant/jsx/CardAnimate'
 
 /*
   +label(titre)
@@ -22,7 +23,8 @@ import { useEffect } from 'react'
 function AjoutService() {
   const [formData, setFormData] = useState({
     name: '',
-    
+    departement_description:'',
+    departement_icon:'',
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +41,8 @@ function AjoutService() {
     const formDataObject = new FormData();
 
     formDataObject.append('departement_name', formData.name);
+    formDataObject.append('departement_description', formData.departement_description);
+    formDataObject.append('departement_icon', formData.departement_icon);
 
     
 
@@ -60,7 +64,9 @@ function AjoutService() {
 
   return <>
     <form className='from_ajout_service'  onSubmit={handleSubmit}>
-      <InputPerso fonction={handleChange} type={"texte"} name={"name"} classN={"inputNomService"} labelTexte={"Département"} value={formData.nomService}/>
+      <InputPerso fonction={handleChange} type={"texte"} name={"name"} classN={"inputNomService"} labelTexte={"Département"} value={formData.name}/>
+      <InputPerso fonction={handleChange} type={"texte"} name={"departement_description"} classN={"inputDescription"} labelTexte={"Déscription"} value={formData.departement_description}/>
+      <InputPerso fonction={handleChange} type={"texte"} name={"departement_icon"} classN={"inputIcon"} labelTexte={"Icon"} value={formData.departement_icon}/>
       <ButtonPerso type={"submit"} texte={"Valider"} classN={"btn-perso"} />
     </form>
   </>
@@ -79,6 +85,7 @@ function DemandeOffre({idD}) {
     taches:'',
     poste:'',
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -128,13 +135,13 @@ function DemandeOffre({idD}) {
       <ButtonPerso type={"submit"} texte={"Valider"} classN={"btn-perso"} />
     </form>
   </>
-
 }
+
 function filtreD(datas,category) {
   if (category==='Tous') {
     return datas;
   }else{
-    let tabData = datas.filter((data)=>data.departement===category)
+    let tabData = datas.filter((data)=>data.nom===category)
     return tabData
   }
 }
@@ -143,7 +150,9 @@ function Departement1({items,setNumP}) {
     <Content_card items={items} setNumP={setNumP}/>
   </>
 }
+
 function Annonce1({items,setNumP,dataAnnonce}) {
+  
   const [category,setCategory] = useState('Tous')
   const [cardData,setCardData] = useState(dataAnnonce)
 
@@ -155,7 +164,9 @@ function Annonce1({items,setNumP,dataAnnonce}) {
   return <>
     <Filtre id={1} tabs={items} setCategory={setCategory}/>
     {cardData.map((data,index)=>
-      data.departement=='Tous'?'':<Card1 key={index} poste={data.poste} departement={data.departement} description={data.description}/>
+     
+      data.nom=='Tous'?'':<Card1 key={index} poste={data.poste} departement={data.nom} description={data.description}/>
+      
     )}
     
   </>
@@ -165,8 +176,8 @@ function Annonce1({items,setNumP,dataAnnonce}) {
 
 function ChangePage({num,setNumP,items,items_annonce,items_service,choixService,setChoixService}){
   //miditra anaty departement
-  if(num>-1&&choixService===items_service[num].departement){
-    console.log(num);
+  if(num>-1&&choixService===items_service[num].nom){
+    // console.log(num);
     return<>
       <DemandeOffre idD={num}/>
     </>
@@ -200,7 +211,7 @@ function ChangePage({num,setNumP,items,items_annonce,items_service,choixService,
   
   
 }
-function ContentBackOffice({items,headerElement,items_service,items_annonce,numPage,setNumP,choixService,setChoixService}) {
+export function ContentBackOffice({items,headerElement,items_service,items_annonce,numPage,setNumP,choixService,setChoixService}) {
   
   return <>
   <div className='box-backOffice'>
@@ -221,5 +232,45 @@ function ContentBackOffice({items,headerElement,items_service,items_annonce,numP
     
   </>
 }
+function ChangePageDep({numPage}) {
+  if(numPage===-1){
+    return <>
+      <DemandeOffre/>
+    </>
+  }else if(numPage===1){
+    return <>
+    <div className='boxT'>
+      <CardAnimate/>
+      <CardAnimate/>
+      <CardAnimate/>
+      <CardAnimate/>
+      <CardAnimate/>
+      
+    </div>
+      
+    </>
+  }
+}
 
-export default ContentBackOffice
+export function ContentDepartement({headerElement,numPage}) {
+  
+  return <>
+  <div className='box-backOffice'>
+    <div className='container-header'>
+         {headerElement.map((item,index)=>
+        
+            <div key={index} className='header-element'>
+             <div className='header-content'>{item.texte}</div>
+             {item.length>1?'':<i className='fas fa-chevron-right'></i>}
+           </div>
+           
+          )}
+    </div>
+    <div className='container-contentBackOffice'>
+        <ChangePageDep numPage={numPage}/>
+    </div>
+  </div>
+    
+  </>
+}
+

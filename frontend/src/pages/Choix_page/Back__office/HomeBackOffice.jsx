@@ -1,13 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import Stat from './../../../assets/img/stat.svg'
-import Service from './../../../assets/img/service.svg'
 
 
-import Ajout from './../../../assets/img/ajout.svg'
-import Liste from './../../../assets/img/liste.svg'
-import Annonce from './../../../assets/img/annonce.svg'
-import Demande from './../../../assets/img/demande.svg'
+
 
 
 import Juridique from './../../../assets/img/juridique.svg'
@@ -17,35 +12,62 @@ import Rh from './../../../assets/img/humain.svg'
 
 
 import Side_bar from './../../../Composant/jsx/composant_BackOffice/side_bar';
-import ContentBackOffice from './ContentBackOffice'
+import { ContentBackOffice } from './ContentBackOffice'
+import Fetch from '../../../Fetch'
+import Icon from '../../../Icon'
+import { useEffect } from 'react'
+import { logDOM } from '@testing-library/react'
 
-function HomeBackOffice() {
+
+let listeService = [
+  {nom:'Tous'},
+]
+let contentAnnonce = [
+    {nom:'Tous'}, 
+    {poste:'Testeur',nom:'IT',description:'Nous cherchons un testeur pour un projet de gestion de la finance'},
+    {poste:'Infirmier en chef',nom:'Juridique',description:'Nous cherchons un infirmier en chef'},
+    {poste:'Dev senior',nom:'Marketing',description:'Nous cherchons un dev senior pour la création de mobile Application'},
+    {poste:'Testeur',nom:'RH',description:'Nous cherchons un testeur pour un projet de gestion de la finance'},
+    {poste:'Infirmier en chef',nom:'IT',description:'Nous cherchons un infifirmier en chef'},
+    {poste:'Dev senior',nom:'Juridique',description:'Nous cherchons un dev senior pour la création de mobile Application'}
+]
+
+
+ function HomeBackOffice() {
+  
+    const dataDep =  Fetch({path:"/getAllDepartement"})
+    const [listeServices,setListeService] = useState(listeService)
+    useEffect(()=>{
+     let dataService = [...listeServices]
+      dataDep.then((data)=>{
+        console.log(data);
+        data.data.forEach(de => {
+         dataService.push(de)
+          // console.log(de);
+      })
+      setListeService(dataService)
+      // console.log(listeServices);
+      });
+    },[])
+ 
+   
+
     const dataSideBar = [
-        {texte:'Département',icon:Service},
-        {texte:'Annonce',icon:Annonce},
-        {texte:'Statistiques',icon:Stat}
+        {texte:'Département',icon:Icon({pathIcon:"service"})},
+        {texte:'Annonce',icon:Icon({pathIcon:"annonce"})},
+        {texte:'Statistiques',icon:Icon({pathIcon:"stat"})}
     ]
+
     const contentService = [
-        {texte:'Ajout',icon:Ajout,description:'Ajout de nouveaux départements',id:0},
-        {texte:'Liste',icon:Liste,description:'La liste des départements qui existent',id:1},
-        {texte:"Demande d'offre ",icon:Demande,description:"Demande d'offre des départements",id:2}
+        {texte:'Ajout',icon:Icon({pathIcon:"ajout"}),description:'Ajout de nouveaux départements',id:0},
+        {texte:'Liste',icon:Icon({pathIcon:"liste"}),description:'La liste des départements qui existent',id:1},
+        {texte:"Demande d'offre ",icon:Icon({pathIcon:"demande"}),description:"Demande d'offre des départements",id:2}
     ]
-    const contentAnnonce = [
-      {departement:'Tous'},
-        {poste:'Testeur',departement:'IT',description:'Nous cherchons un testeur pour un projet de gestion de la finance'},
-        {poste:'Infirmier en chef',departement:'Juridique',description:'Nous cherchons un infirmier en chef'},
-        {poste:'Dev senior',departement:'Marketing',description:'Nous cherchons un dev senior pour la création de mobile Application'},
-        {poste:'Testeur',departement:'RH',description:'Nous cherchons un testeur pour un projet de gestion de la finance'},
-        {poste:'Infirmier en chef',departement:'IT',description:'Nous cherchons un infifirmier en chef'},
-        {poste:'Dev senior',departement:'Juridique',description:'Nous cherchons un dev senior pour la création de mobile Application'}
-  ]
-    const listeService = [
-      {departement:'Tous'},
-      {departement:'IT',icon:It,description:'Département informatique',id:1},
-      {departement:'Juridique',icon:Juridique,description:'Département juridique',id:2},
-      {departement:'Marketing',icon:Marketing,description:'Département marketing',id:3},
-      {departement:'RH',icon:Rh,description:'Département des ressources humaines',id:4}
-  ]
+
+
+  
+    
+  
     const headerElement = [
       {texte:'Département',id:1},
       {texte:'Ajout',id:0}
@@ -55,9 +77,10 @@ function HomeBackOffice() {
     const[choixService,setChoixService] = useState('null')
   return <>
     <div className='dash-board-container'>
-        <Side_bar items={dataSideBar} setNumP={setNumP}/>
+        <Side_bar items={dataSideBar} setNumP={setNumP} funcService={setChoixService}/>
         
-        <ContentBackOffice items={contentService} items_annonce={contentAnnonce} headerElement={headerElement} items_service={listeService} numPage={numPage} setNumP={setNumP} choixService={choixService} setChoixService={setChoixService}/>
+        
+        <ContentBackOffice items={contentService} items_annonce={contentAnnonce} headerElement={headerElement} items_service={listeServices} numPage={numPage} setNumP={setNumP} choixService={choixService} setChoixService={setChoixService}/>
     </div>
   </>
 }

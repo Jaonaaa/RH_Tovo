@@ -1,17 +1,14 @@
 import React from 'react'
+import { json } from 'react-router-dom';
  
 
-function Fetch() {
-  const apiGet = ()=>{
-    fetch("http://localhost:3202/getAllDepartement")
+ async function Fetch({path}) {
+  let data = []
+  const apiGet = await fetch(`http://localhost:3202${path}`)
     .then((response)=> response.json())
-    .then((json)=> console.log(json))
+    .then((json)=> data=json)
     .catch((error)=> console.error('Error:',error));
-  }
-  return <>
-    <div>Fetch api</div>
-    <button onClick={apiGet}>Ok</button>
-  </>
+  return data
 }
 
 

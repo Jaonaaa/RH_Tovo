@@ -16,6 +16,7 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    min-height: 15rem;
 }
 .card-header{
     display: flex;

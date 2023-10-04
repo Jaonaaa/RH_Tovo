@@ -1,3 +1,6 @@
+:root{
+    --theme:#049985;
+}
 .sideBar-container{
     /* background-color: red; */
     padding: 10px;
@@ -21,7 +24,7 @@
     align-items: center ;
 }
 .sideBar-item:hover{
-    background-color: #ededed;
+    background-color: white;
 }
 .sideBar-item img{
     width: 20px;
@@ -38,9 +41,10 @@
     color: transparent;
 }
 .on{
-    background-color: yellow;
-    color: yellow;
+    background-color: var(--theme);
+    color: var(--theme);
 }
+
 .active{
-    background-color: rgb(240, 240, 240);
+    background-color: white;
 }
