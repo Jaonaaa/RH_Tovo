@@ -8,7 +8,7 @@ import {ContentInfo1,ContentInfo2} from "./../../Composant/jsx/content_informati
 function HomeClient() {
 
   
-
+  
   const datas = [
     
     {poste:'Testeur',departement:'Finance',description:'Nous cherchons un testeur pour un projet de gestion de la finance'},

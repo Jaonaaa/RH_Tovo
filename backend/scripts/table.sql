@@ -1,3 +1,5 @@
+
+
 CREATE TABLE IF NOT EXISTS departement (
     id  SERIAL PRIMARY KEY ,
     nom VARCHAR(60) ,
@@ -112,7 +114,11 @@ CREATE TABLE IF NOT EXISTS test_question (
     coef NUMERIC(10,3)
 );
 
+INSERT INTO departement VALUES (default,'IT','Département technologique','it');
+INSERT INTO departement VALUES (default,'Juridique','Département juridique','juridique');
+INSERT INTO departement VALUES (default,'Marketing','Département marketing','marketing');
+INSERT INTO departement VALUES (default,'RH','Département des ressources humaines','humain');
 
-INSERT INTO departement VALUES (default,'Juridique');
-INSERT INTO departement VALUES (default,'IT');
-INSERT INTO departement VALUES (default,'Marketing');
+-- mamerina id_serial à 1
+ALTER SEQUENCE departement_id_seq RESTART WITH 1
+ALTER SEQUENCE details_requete_departement_id_seq RESTART WITH 1

@@ -7,18 +7,18 @@ import { useState } from 'react'
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 
-export function InputPerso({type,name,classN,labelTexte,value,fonction}){
+export function InputPerso({type,name,classN,labelTexte,value,fonction,couleurLabel}){
  return <>
-   <div className='box-input'>
+   <div className={`box-input ${couleurLabel}`}>
     <div className='label-texte'>{labelTexte}</div>
     
     <input onChange={fonction} className={classN} type={type} name={name} value={value}/>
   </div>
  </>
 }
-export function ButtonPerso({texte,classN,func,type}) {
+export function ButtonPerso({texte,classN,func,type,container_class="button-container"}) {
   return <>
-  <div className='button-container'>
+  <div className={container_class}>
     <button type={type} className={classN} onClick={func}>{texte}</button>
   </div>
     
