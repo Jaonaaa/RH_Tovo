@@ -1,6 +1,7 @@
 import getConnectionPg from "../../connection/Connection.js";
 import { buildResponse } from "../../utils/Status.js";
 import { getTimeNow } from "../../utils/Time.js";
+import { getDepartement } from "./Departement.js";
 import {
   details_requete_departement,
   getDetailsRequest,
@@ -60,6 +61,11 @@ export const getListRequestAll = async () => {
         rowsResult[i]["id_details_requete_departement"],
         client
       );
+
+      rowsResult[i].departement = await getDepartement(
+        client,
+        rowsResult[i]["id_departement"]
+      );
     }
 
     response = buildResponse("good", "", rowsResult);
@@ -93,6 +99,10 @@ export const getListRequest = async (idDepartement) => {
       rowsResult[i].details = await getDetailsRequest(
         rowsResult[i]["id_details_requete_departement"],
         client
+      );
+      rowsResult[i].departement = await getDepartement(
+        client,
+        rowsResult[i]["id_departement"]
       );
     }
 

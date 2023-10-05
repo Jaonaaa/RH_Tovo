@@ -74,3 +74,17 @@ export const checkDepartementAlreadyExists = async (client, name) => {
   }
   return countRow > 0 ? true : false;
 };
+
+export const getDepartement = async (client, idDept) => {
+  let row = {};
+  try {
+    const result = await client.query(
+      "SELECT * FROM departement WHERE id = $1 ",
+      [idDept]
+    );
+    row = result.rows[0];
+  } catch (err) {
+    throw new Error(err);
+  }
+  return row;
+};

@@ -43,6 +43,7 @@ export const routersAdmin = (app, uploads) => {
     );
     res.json(response);
   });
+
   app.post("/getRequestAllDepartement", uploads.none(), async (req, res) => {
     let response = await getListRequestAll();
     res.json(response);
