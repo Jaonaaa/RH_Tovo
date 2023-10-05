@@ -152,7 +152,7 @@ function Departement1({items,setNumP}) {
 }
 
 function Annonce1({items,setNumP,dataAnnonce}) {
-  
+  console.log(dataAnnonce);
   const [category,setCategory] = useState('Tous')
   const [cardData,setCardData] = useState(dataAnnonce)
 
@@ -165,7 +165,7 @@ function Annonce1({items,setNumP,dataAnnonce}) {
     <Filtre id={1} tabs={items} setCategory={setCategory}/>
     {cardData.map((data,index)=>
      
-      data.nom=='Tous'?'':<Card1 key={index} poste={data.poste} departement={data.nom} description={data.description}/>
+      data.nom=='Tous'?'':<Card1 key={index} poste={data.details.poste} departement={data.departement.nom} description={data.details.taches}/>
       
     )}
     
@@ -175,11 +175,11 @@ function Annonce1({items,setNumP,dataAnnonce}) {
 
 
 function ChangePage({num,setNumP,items,items_annonce,items_service,choixService,setChoixService}){
-  //miditra anaty departement
+  //aminzay mandeha tsara lay passage entre en composant
+  //hatreto lony fa mila ovaina
   if(num>-1&&choixService===items_service[num].nom){
-    // console.log(num);
-    return<>
-      <DemandeOffre idD={num}/>
+    return <>
+      <Card_Service items={items_service} setNumP={setNumP} setChoixService={setChoixService}/>
     </>
   }
 
@@ -232,27 +232,26 @@ export function ContentBackOffice({items,headerElement,items_service,items_annon
     
   </>
 }
-function ChangePageDep({numPage}) {
+function ChangePageDep({numPage,dataDemande,idD}) {
   if(numPage===-1){
     return <>
-      <DemandeOffre/>
+      <DemandeOffre idD={idD}/>
     </>
   }else if(numPage===1){
     return <>
     <div className='boxT'>
-      <CardAnimate/>
-      <CardAnimate/>
-      <CardAnimate/>
-      <CardAnimate/>
-      <CardAnimate/>
       
+      {dataDemande.map((data,index)=>
+          <CardAnimate key={index} data={data}/>
+      )}
+
     </div>
       
     </>
   }
 }
 
-export function ContentDepartement({headerElement,numPage}) {
+export function ContentDepartement({headerElement,numPage,dataDemande,idD}) {
   
   return <>
   <div className='box-backOffice'>
@@ -267,7 +266,7 @@ export function ContentDepartement({headerElement,numPage}) {
           )}
     </div>
     <div className='container-contentBackOffice'>
-        <ChangePageDep numPage={numPage}/>
+        <ChangePageDep numPage={numPage} dataDemande={dataDemande} idD={idD}/>
     </div>
   </div>
     

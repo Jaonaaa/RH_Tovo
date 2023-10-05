@@ -13,9 +13,10 @@ import Rh from './../../../assets/img/humain.svg'
 
 import Side_bar from './../../../Composant/jsx/composant_BackOffice/side_bar';
 import { ContentBackOffice } from './ContentBackOffice'
-import Fetch from '../../../Fetch'
+import { Fetch } from '../../../Fetch'
 import Icon from '../../../Icon'
 import { useEffect } from 'react'
+import { Fetch2 } from '../../../Fetch'
 import { logDOM } from '@testing-library/react'
 
 
@@ -35,12 +36,22 @@ let contentAnnonce = [
 
  function HomeBackOffice() {
   
-    const dataDep =  Fetch({path:"/getAllDepartement"})
+    const dataDep =  Fetch({path:"/getAllDepartement",method:"GET"})
+    const allDemande = Fetch({path:"/getRequestAllDepartement",method:"POST"})
+    
+    const [dataDemande,setDataDemande] = useState(allDemande)
     const [listeServices,setListeService] = useState(listeService)
     useEffect(()=>{
+      // data demande service
+      allDemande.then((dataDS)=>{
+          setDataDemande(dataDS.data)
+          // console.log(dataDS.data);
+      })
+
+      // data service
      let dataService = [...listeServices]
       dataDep.then((data)=>{
-        console.log(data);
+        // console.log(data);
         data.data.forEach(de => {
          dataService.push(de)
           // console.log(de);
@@ -80,7 +91,7 @@ let contentAnnonce = [
         <Side_bar items={dataSideBar} setNumP={setNumP} funcService={setChoixService}/>
         
         
-        <ContentBackOffice items={contentService} items_annonce={contentAnnonce} headerElement={headerElement} items_service={listeServices} numPage={numPage} setNumP={setNumP} choixService={choixService} setChoixService={setChoixService}/>
+        <ContentBackOffice items={contentService} items_annonce={dataDemande} headerElement={headerElement} items_service={listeServices} numPage={numPage} setNumP={setNumP} choixService={choixService} setChoixService={setChoixService}/>
     </div>
   </>
 }

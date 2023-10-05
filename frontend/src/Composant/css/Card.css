@@ -10,13 +10,18 @@
     display: none;
 }
 .box-card{
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
     margin: 1%;
     min-width: 450px;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
     min-height: 15rem;
+    background-color: white;
+    transition: 0.3s ease-in-out;
+}
+.box-card:hover{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .card-header{
     display: flex;
@@ -44,7 +49,7 @@
     transform: rotate(-60deg);
 }
 .card-title{
-    font-size: 25px;
+    font-size: 30px;
     /* font-weight: bold; */
     margin: 20px 15px;
 }
@@ -52,6 +57,9 @@
     margin: 10px 15px;
     height: 50px;
     width: 82%;   
+    color: rgb(157, 157, 157);
+    font-size: 15px;
+    margin-left: 35px;
 }
 .box-icon img{
     /* background:red; */

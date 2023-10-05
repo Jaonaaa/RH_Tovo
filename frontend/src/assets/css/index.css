@@ -76,6 +76,9 @@ a{
     font-size: 30px;
     font-weight: bold;
 }
+.container-contentBackOffice::-webkit-scrollbar{
+    display: none;
+}
 .container-contentBackOffice{
     width: 95%;
     margin: 20px;

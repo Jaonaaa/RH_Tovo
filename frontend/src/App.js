@@ -14,6 +14,7 @@ import HomeDepartement from './pages/Choix_page/Back__office/HomeDepartement';
 
 import { Routes, Route, Link} from "react-router-dom";
 import CardAnimate from './Composant/jsx/CardAnimate';
+import Footer from './Footer';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   return (
 
     <>
+    {/* <Footer/> */}
     {/* <CardAnimate/> */}
     {/* <Fetch/> */}
   <Routes>
