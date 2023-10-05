@@ -42,12 +42,12 @@ export const routersAdmin = (app, uploads) => {
     );
     res.json(response);
   });
-  app.post("/getRequestAllDepartement", async (req, res) => {
+  app.post("/getRequestAllDepartement", uploads.none(), async (req, res) => {
     let response = await getListRequestAll();
     res.json(response);
   });
 
-  app.post("/getRequestByDepartement", async (req, res) => {
+  app.post("/getRequestByDepartement", uploads.none(), async (req, res) => {
     let idDepartement = JSON.parse(req.body.idDepartement);
     let response = await getListRequest(idDepartement);
     res.json(response);
