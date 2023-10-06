@@ -29,7 +29,8 @@ export const routersAdmin = (app, uploads) => {
     let response = await insertDepartement(
       data.departement_name,
       data.departement_description,
-      data.departement_icon
+      data.departement_icon,
+      data.departement_color
     );
     res.json(response);
   });
@@ -55,6 +56,11 @@ export const routersAdmin = (app, uploads) => {
     res.json(response);
   });
   // Annonce
+  app.post("/test", uploads.none(), async (req, res) => {
+    let data = req.body;
+    console.log(JSON.parse(data.data));
+    res.json(JSON.parse(data.data));
+  });
 };
 
 // let drd = {

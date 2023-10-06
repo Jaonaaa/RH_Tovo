@@ -7,6 +7,7 @@ export const departement = {
   nom: "",
   description: "",
   icon: "",
+  color: "",
 };
 
 export const getAllDepartement = async () => {
@@ -27,7 +28,7 @@ export const getAllDepartement = async () => {
  * @param {String} name
  * @returns
  */
-export const insertDepartement = async (name, description, icon) => {
+export const insertDepartement = async (name, description, icon, color) => {
   const client = await getConnectionPg();
   let response = {};
   try {
@@ -35,11 +36,10 @@ export const insertDepartement = async (name, description, icon) => {
 
     if (!exist) {
       await client.query("BEGIN TRANSACTION");
-      await client.query("INSERT INTO departement VALUES (default, $1,$2,$3)", [
-        name,
-        description,
-        icon,
-      ]);
+      await client.query(
+        "INSERT INTO departement VALUES (default, $1,$2,$3,$4)",
+        [name, description, icon, color]
+      );
       response = buildResponse("good", `Département enregistré`, []);
       await client.query("COMMIT");
     } else {
