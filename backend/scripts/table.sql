@@ -64,7 +64,8 @@ CREATE TABLE IF NOT EXISTS annonce_details (
 
 CREATE TABLE IF NOT EXISTS critere_par_defaut (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(50)
+    nom VARCHAR(50),
+    id_question_reponse_p INT REFERENCES question_reponse_p (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS candidat (
