@@ -1,3 +1,10 @@
+import {
+  addAnnonce,
+  getAllAnnonce,
+  getAllAnnonceByDept,
+  getAnnonce,
+  getAnnonceDefaultData,
+} from "../models/Annonce/Annonce.js";
 import { insertDefaultCriteria } from "../models/CritereParDefaut.js";
 import {
   getAllDepartement,
@@ -9,7 +16,6 @@ import {
   registerDepartementRequest,
 } from "../models/Departement/RequeteDepartement.js";
 import { buildResponse } from "../utils/Status.js";
-import { getTimeNow } from "../utils/Time.js";
 /**
  *
  * @param {import("express").Express} app
@@ -55,11 +61,35 @@ export const routersAdmin = (app, uploads) => {
     let response = await getListRequest(idDepartement);
     res.json(response);
   });
+  //
+  //
   // Annonce
-  app.post("/test", uploads.none(), async (req, res) => {
-    let data = req.body;
-    console.log(JSON.parse(data.data));
-    res.json(JSON.parse(data.data));
+  app.get("/getDefaultAnnonceData", uploads.none(), async (req, res) => {
+    let data = await getAnnonceDefaultData();
+    res.json(data);
+  });
+  app.get("/getAllAnnonce", uploads.none(), async (req, res) => {
+    let data = await getAllAnnonce();
+    res.json(buildResponse("good", "", data));
+  });
+  app.get("/getAllAnnonceByDept", uploads.none(), async (req, res) => {
+    let data = await getAllAnnonceByDept(null, 1);
+    res.json(buildResponse("good", "", data));
+  });
+  // tadiavina kely maka valeur ana parametre am GET
+  app.get("/getAnnonce", uploads.none(), async (req, res) => {
+    let data = await getAnnonce(null, 16);
+    res.json(buildResponse("good", "", data));
+  });
+  //
+  app.post("/insertAnnonceData", uploads.none(), async (req, res) => {
+    let data = JSON.parse(req.body.data);
+    let result = await addAnnonce(
+      data.details,
+      data.titre,
+      data.id_departement
+    );
+    res.json(result);
   });
 };
 
