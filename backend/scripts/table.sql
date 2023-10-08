@@ -141,3 +141,4 @@ INSERT INTO critere_par_defaut VALUES (default,'Diplome',1);
 INSERT INTO question_reponse_p VALUES (default,3);
 INSERT INTO critere_par_defaut VALUES (default,'Expérience',2)
 -- gereo conflit eee XDD
+-- zay fa vita pull e
