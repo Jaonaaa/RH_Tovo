@@ -4,14 +4,14 @@ import "./../../assets/fontawesome-5/css/all.min.css";
 import { Link } from 'react-router-dom'
 import './../css/Card.css'
 import  Fleche  from "./../../assets/img/fleche.png";
-function couleurDepartement() {
-    
-}
 
-export function Card1({poste,departement,description}) {
+
+export function Card1({poste,departement,description,idDemande}) {
   return <>
     
-    <div className='box-card'>
+    <div className='box-card' onClick={()=>{
+      console.log(idDemande,departement)
+    }}>
         <div className='card-header'>
             <img src={Logo} alt="logo" />
             <div className='card-departement'><span>{departement}</span></div>

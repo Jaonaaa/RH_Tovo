@@ -6,6 +6,7 @@
   flex-wrap: wrap;  
   justify-content: flex-start ;
 }
+
 .card {
     min-width: 200px;
     height: 300px;
@@ -15,7 +16,7 @@
     transform-style: preserve-3d; /* Ajoutez cette ligne */
     transform-origin:center;
     margin: 8px 13px;
-  }
+}
   
  
   

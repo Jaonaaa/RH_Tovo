@@ -3,9 +3,12 @@ import  Search  from "./../../assets/img/Search.gif";
 import  Organize  from "./../../assets/img/Organize.gif";
 import "./../css/ContentInfo.css"
 import  Fleche  from "./../../assets/img/fleche.png";
+import { Link } from 'react-router-dom';
+
 
 
 export function ContentInfo1() {
+
     const allDep = ['Juridique','IT','Marketing','Ressource humaine','Juridique','IT','Marketing','Ressource humaine','Juridique','IT','Marketing','Ressource humaine','Juridique','IT','Marketing','Ressource humaine']
   return <>
   <img src={Search} alt="need job" />
@@ -37,9 +40,13 @@ export function ContentInfo2() {
                 <div className='part'> </div>
             </div>
             <div className='right-content2'>
-            <div className='btn_organize'>
+            
+            <Link to={"/EntretienAffichage"} className='btn_organize'>
+                
                     <div className='texte_btn'>VOIR</div>
-            </div>
+                
+            </Link>  
+            
         </div>
     </div>
     <img src={Organize} alt="organize" />

@@ -1,0 +1,70 @@
+.drop_down {
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+}
+.drop_down .container_label {
+  display: flex;
+  padding: 0.7rem 0 0.7rem 1rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 0.1rem 0.1rem rgba(169, 167, 167, 0.7098039216);
+}
+.drop_down .container_label:hover {
+  background: #f3f5f8;
+}
+.drop_down .container_label .text {
+  font-size: 0.92rem;
+  padding-right: 2.5rem;
+  color: #3c3c3c;
+}
+.drop_down .container_label .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  margin-right: 1rem;
+  transition: all 0.15s ease-in-out;
+  height: 1rem;
+}
+.drop_down .hiddenText {
+  position: absolute;
+  top: 0;
+  font-size: 0.95rem;
+  pointer-events: none;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.drop_down .container_options {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: 120%;
+  transition: all 0.15s ease-in-out;
+  background: #fff;
+  z-index: 2;
+}
+.drop_down .container_options .option_drop_down {
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.14s ease-in-out;
+  padding: 0.2rem 0.5rem;
+}
+.drop_down .container_options .option_drop_down:hover {
+  background: #eaeff7;
+}/*# sourceMappingURL=style.css.map */

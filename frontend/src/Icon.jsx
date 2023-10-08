@@ -15,6 +15,9 @@ import Marketing from './assets/img/marketing.svg'
 import Rh from './assets/img/humain.svg'
 import Logo from './assets/img/Logo.svg'
 
+import Deconnexion from './assets/img/deconnexion.svg'
+import Entretien  from './assets/img/entretien.png'
+
 function Icon({pathIcon}) {
   if("stat"===pathIcon){
     return Stat
@@ -38,6 +41,10 @@ function Icon({pathIcon}) {
     return Rh
   }else if("logo"===pathIcon){
     return Logo
+  }else if("deconnexion"===pathIcon){
+    return Deconnexion
+  }else if("entretien"==pathIcon){
+    return Entretien
   }
 }
 

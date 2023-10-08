@@ -17,7 +17,7 @@ export function Nav_bar({search_bar}) {
   const datas= [
     {label:"Acceuil",path:"/HomeClient"},
     {label:"Annonce",path:"/Annonce"},
-    {label:"Entretien",path:"Entretien"}
+    {label:"Entretien",path:"/EntretienAffichage"}
   ]
   return <>
     <nav>

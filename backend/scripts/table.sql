@@ -122,3 +122,22 @@ INSERT INTO departement VALUES (default,'RH','Departement des ressources humaine
 -- mamerina id_serial à 1
 ALTER SEQUENCE departement_id_seq RESTART WITH 1
 ALTER SEQUENCE details_requete_departement_id_seq RESTART WITH 1
+ALTER SEQUENCE details_requete_departement_id_seq RESTART WITH 1
+
+--login
+INSERT INTO login_departement VALUES (default,'Sergio','it_dep@gmail.com','1ItDep',1);
+INSERT INTO login_departement VALUES (default,'Paul','juridique_dep@gmail.com','2JuridiqueDep',2);
+INSERT INTO login_departement VALUES (default,'Faniry','marketing_dep@gmail.com','3MarketinDep',3);
+INSERT INTO login_departement VALUES (default,'RH','rh_dep@gmail.com','1RhDep',4);
+
+-- critere par default 
+-- diplome 
+INSERT INTO question_reponse_p VALUES (default,1);
+INSERT INTO reponse_p VALUES (1,'Bacc',true);
+INSERT INTO reponse_p VALUES (1,'Licence',true);
+INSERT INTO reponse_p VALUES (1,'Master',true);
+INSERT INTO critere_par_defaut VALUES (default,'Diplome',1);
+-- Expérience 
+INSERT INTO question_reponse_p VALUES (default,3);
+INSERT INTO critere_par_defaut VALUES (default,'Expérience',2)
+-- gereo conflit eee XDD

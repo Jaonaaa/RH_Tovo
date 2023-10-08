@@ -1,0 +1,41 @@
+
+.box-entretient{
+  display: flex;
+  width: 100vw;
+}
+.box-eventList{
+  width:15vw ;
+  /* background-color: red; */
+}
+.box-calendar::-webkit-scrollbar{
+  display: none;
+}
+.box-calendar{
+  width: 80vw;
+
+}
+.box-calendar-affichage{
+  margin: 10px auto;
+  width: 90vw;
+}
+.event-element{
+  /* padding: 10px; */
+  margin: 5px 10px;
+  display: flex;
+  /* border: 0.5px solid rgb(234, 233, 233); */
+  min-width: 200px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  cursor: move;
+}
+.name-event{
+  padding: 10px;
+  width: 85%;
+}
+.color-event{
+  padding: 10px;
+  width: 30%;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  color: white;
+}

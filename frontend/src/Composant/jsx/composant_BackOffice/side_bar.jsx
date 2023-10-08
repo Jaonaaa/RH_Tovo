@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Logo from './../../../assets/img/Logo.svg'
 import './../../css/SideBar.css'
+import { Navigate } from 'react-router-dom'
+
     
-    function SideBar_item({items,setNumP,funcService}) {
+    function SideBar_item({items,setNumP,funcService,setLog,foncSetLogin}) {
+        
         const[itemActive,setItemActive] = useState(0)
         function handleSelectedItem (index) {
             setItemActive(index)
@@ -26,6 +29,11 @@ import './../../css/SideBar.css'
                     }else if(item.texte=="Liste"){
                         setNumP(1)
                         funcService('')
+                    }else if(item.texte=="Deconnexion"){
+                        setLog(-1)//eto lay mamono session
+                        funcService('')
+                        console.log("deconnexion");
+                        foncSetLogin(2)
                     }
                 }}>
                     <div className={`active-element ${index===itemActive?"on":""}`}>.</div>
@@ -36,14 +44,14 @@ import './../../css/SideBar.css'
         </>
     }
 
-function Side_bar({items,setNumP,funcService}) {
+function Side_bar({items,setNumP,funcService,setLog,foncSetLogin}) {
   return <>
     <div className='sideBar-container'>
         <div className='sideBar-header'>
             <img src={Logo} alt="logo" />
         </div>
         <div className='sideBar-container-item'>
-            <SideBar_item items={items} setNumP={setNumP} funcService={funcService}/>   
+            <SideBar_item setLog={setLog} items={items} setNumP={setNumP} funcService={funcService} foncSetLogin={foncSetLogin}/>   
         </div>
       
     </div>
