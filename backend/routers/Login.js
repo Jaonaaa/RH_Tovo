@@ -9,18 +9,18 @@ import { checkLogin } from "../models/Departement/Login_Departement.js";
  */
 export const routersLogin = async (app, uploads) => {
   // Session
-  app.get("/login_in", uploads.none(), async (req, res) => {
+  app.post("/login_in", uploads.none(), async (req, res) => {
     let data = JSON.parse(req.body);
     let result = await checkLogin(req, data.email, data.mdp);
     return res.json(result);
   });
-  app.get("/disconnect", uploads.none(), async (req, res) => {
+  app.post("/disconnect", uploads.none(), async (req, res) => {
     req.session.destroy((err) => {
       console.log(err);
     });
     return res.json(buildResponse("good", "session destroyed / déconnecter"));
   });
-  app.get("/getToken", uploads.none(), async (req, res) => {
+  app.post("/getToken", uploads.none(), async (req, res) => {
     let result = req.session.userOn;
     if (result == null) res.json(buildResponse("error", "aucun token"));
     else res.json(result);
