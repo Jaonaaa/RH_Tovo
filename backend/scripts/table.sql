@@ -4,8 +4,7 @@ CREATE TABLE IF NOT EXISTS departement (
     id  SERIAL PRIMARY KEY ,
     nom VARCHAR(60) ,
     description VARCHAR(255) ,
-    icon VARCHAR(255) ,
-    color VARCHAR(255) ,
+    icon VARCHAR(255) 
 );
 
 CREATE TABLE IF NOT EXISTS login_departement(
@@ -44,8 +43,6 @@ CREATE TABLE IF NOT EXISTS question (
     type VARCHAR(30) 
 );
 
-
-
 CREATE TABLE IF NOT EXISTS question_reponse_p (
     id SERIAL PRIMARY KEY,
     id_question INT REFERENCES question (id) ON DELETE CASCADE
@@ -67,8 +64,7 @@ CREATE TABLE IF NOT EXISTS annonce_details (
 
 CREATE TABLE IF NOT EXISTS critere_par_defaut (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(50),
-    id_question_reponse_p INT REFERENCES question_reponse_p (id) ON DELETE CASCADE
+    nom VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS candidat (
@@ -118,27 +114,11 @@ CREATE TABLE IF NOT EXISTS test_question (
     coef NUMERIC(10,3)
 );
 
-INSERT INTO departement VALUES (default,'IT','Département technologique','it');
-INSERT INTO departement VALUES (default,'Juridique','Département juridique','juridique');
-INSERT INTO departement VALUES (default,'Marketing','Département marketing','marketing');
-INSERT INTO departement VALUES (default,'RH','Département des ressources humaines','humain');
-
-INSERT INTO question VALUES (default,'Select');
-INSERT INTO question VALUES (default,'Choix multiple');
-INSERT INTO question VALUES (default,'Nombre');
-INSERT INTO question VALUES (default,'Texte');
+INSERT INTO departement VALUES (default,'IT','Departement technologique','it');
+INSERT INTO departement VALUES (default,'Juridique','Departement juridique','juridique');
+INSERT INTO departement VALUES (default,'Marketing','Departement marketing','marketing');
+INSERT INTO departement VALUES (default,'RH','Departement des ressources humaines','humain');
 
 -- mamerina id_serial à 1
 ALTER SEQUENCE departement_id_seq RESTART WITH 1
 ALTER SEQUENCE details_requete_departement_id_seq RESTART WITH 1
-
--- critere par default 
--- diplome 
-INSERT INTO question_reponse_p VALUES (default,1);
-INSERT INTO reponse_p VALUES (1,'Bacc',true);
-INSERT INTO reponse_p VALUES (1,'Licence',true);
-INSERT INTO reponse_p VALUES (1,'Master',true);
-INSERT INTO critere_par_defaut VALUES (default,'Diplome',1);
--- Expérience 
-INSERT INTO question_reponse_p VALUES (default,3);
-INSERT INTO critere_par_defaut VALUES (default,'Expérience',2)
