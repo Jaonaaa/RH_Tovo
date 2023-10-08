@@ -132,6 +132,11 @@ INSERT INTO login_departement VALUES (default,'Paul','juridique_dep@gmail.com','
 INSERT INTO login_departement VALUES (default,'Faniry','marketing_dep@gmail.com','3MarketinDep',3);
 INSERT INTO login_departement VALUES (default,'RH','rh_dep@gmail.com','1RhDep',4);
 
+INSERT INTO question VALUES (default,'Select');
+INSERT INTO question VALUES (default,'Choix multiple');
+INSERT INTO question VALUES (default,'Nombre');
+INSERT INTO question VALUES (default,'Text');
+
 -- critere par default 
 -- diplome 
 INSERT INTO question_reponse_p VALUES (default,1);
