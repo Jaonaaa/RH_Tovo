@@ -21,7 +21,7 @@ export const routersLogin = async (app, uploads) => {
     });
     return res.json(buildResponse("good", "session destroyed / déconnecter"));
   });
-  app.post("/getToken", uploads.none(), async (req, res) => {
+  app.get("/getToken", uploads.none(), async (req, res) => {
     let result = req.session.userOn;
     console.log("tewt");
     if (result == null) res.json(buildResponse("error", "aucun token"));
