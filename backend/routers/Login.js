@@ -25,6 +25,6 @@ export const routersLogin = async (app, uploads) => {
     let result = req.session.userOn;
     console.log("tewt");
     if (result == null) res.json(buildResponse("error", "aucun token"));
-    else buildResponse("good", "", res.json(result));
+    else res.json(buildResponse("good", "", result));
   });
 };
