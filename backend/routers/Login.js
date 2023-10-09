@@ -14,6 +14,7 @@ export const routersLogin = async (app, uploads) => {
     let result = await checkLogin(req, data.email, data.mdp);
     return res.json(result);
   });
+
   app.post("/disconnect", uploads.none(), async (req, res) => {
     req.session.destroy((err) => {
       console.log(err);
