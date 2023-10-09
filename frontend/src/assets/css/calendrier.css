@@ -1,10 +1,13 @@
-
-.box-entretient{
+.box-entretient-2{
   display: flex;
   width: 100vw;
 }
+.box-entretient{
+  display: flex;
+  width: 70vw;
+}
 .box-eventList{
-  width:15vw ;
+  width:12vw ;
   /* background-color: red; */
 }
 .box-calendar::-webkit-scrollbar{
@@ -23,14 +26,16 @@
   margin: 5px 10px;
   display: flex;
   /* border: 0.5px solid rgb(234, 233, 233); */
-  min-width: 200px;
+  min-width: 150px;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  /* background-color: white; */
   cursor: move;
 }
-.name-event{
+  .name-event{
   padding: 10px;
   width: 85%;
+  
 }
 .color-event{
   padding: 10px;

@@ -36,7 +36,7 @@ function DropDown({id,tab=[],setCategory}) {
     </>
 }
 function Filtre({id,tabs=[],setCategory}) {
-    console.log(tabs);
+    // console.log(tabs);
   return <>
     <div className='box-filtre'>
         <DropDown id={id} tab={tabs} setCategory={setCategory}/>

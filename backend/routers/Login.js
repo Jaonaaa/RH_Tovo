@@ -10,7 +10,7 @@ import { checkLogin } from "../models/Departement/Login_Departement.js";
 export const routersLogin = async (app, uploads) => {
   // Session
   app.post("/login_in", uploads.none(), async (req, res) => {
-    let data = JSON.parse(req.body);
+    let data = req.body;
     let result = await checkLogin(req, data.email, data.mdp);
     return res.json(result);
   });

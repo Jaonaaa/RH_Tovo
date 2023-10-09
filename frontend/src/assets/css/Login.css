@@ -50,7 +50,7 @@
     object-fit: cover;
     object-position: center;
 }
-.left form input[type=text],
+.left form input[type=email],
 .left form input[type=password]{
     width: 300px;
     background-color: none;

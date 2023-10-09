@@ -77,7 +77,7 @@ export function EntretienAffichage() {
 
   return <>
   <Nav_bar search_bar={true}/>
-  <div className='box-entretient'>
+  <div className='box-entretient-2'>
     <div className='box-calendar-affichage'>
         <FullCalendar
           // height={'700'}
@@ -241,7 +241,7 @@ export function Entretien() {
 
   
   return <>
-  <Nav_bar search_bar={true}/>
+  {/* <Nav_bar search_bar={true}/> */}
   <div className='box-entretient'>
   
     <div id='external-event' className='box-eventList'>

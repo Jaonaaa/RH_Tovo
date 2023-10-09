@@ -5,6 +5,7 @@ import { Card1 } from '../../../Composant/jsx/card'
 import {InputPerso,ButtonPerso,SelectPerso,TextAreaPerso} from './../../../Composant/jsx/cv_content'
 import { useEffect } from 'react'
 import CardAnimate from '../../../Composant/jsx/CardAnimate'
+import { Entretien } from '../../../Composant/jsx/Entretien'
 
 /*
   +label(titre)
@@ -210,6 +211,10 @@ function ChangePage({num,setNumP,items,items_annonce,items_service,choixService,
    
     return <>
       <Annonce1 items={items_service} dataAnnonce={items_annonce}/>
+    </>
+  }else if(num==4){
+    return <>
+      <Entretien/>
     </>
   }
   

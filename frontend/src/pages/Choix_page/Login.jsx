@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './../../assets/css/Login.css'
 import { InputPerso,ButtonPerso } from '../../Composant/jsx/cv_content'
 import Log from './../../assets/img/log.jpg'
@@ -7,23 +7,13 @@ import { useState } from 'react'
 import HomeDepartement from './Back__office/HomeDepartement'
 import HomeBackOffice from './Back__office/HomeBackOffice'
 import { Navigate,Route, Routes } from 'react-router-dom'
-// function checkLogin({data,setLog}) {
-    
-//     if(data.nom==="Sergio"){
-//         setLog(0)
-//         return <Navigate to="/Back_office/HomeDepartment" />
-
-//     }else if(data.nom==="Paul"){
-//         setLog(1)
-//         return <Navigate to="/Back_office/HomeBackOffice"  />
-//     }else{
-//         setLog(2)
-//     }
-// }
+import { Fetch } from '../../Fetch'
+import { useNavigate } from 'react-router-dom'
 function Login({log,setLog,foncSetLogin}) {
     foncSetLogin(-1)
+    var login = -1
     const [formData, setFormData] = useState({
-        nom: '',
+        email:'',
         mdp:''
       });
       const handleChange = (e) => {
@@ -33,53 +23,76 @@ function Login({log,setLog,foncSetLogin}) {
           [name]: value,
         });
       };
-    
+      const navigate = useNavigate;
       const handleSubmit = async (e) => {
         e.preventDefault();
         
        
        
         const formDataObject = new FormData();
-    
-        formDataObject.append('email', formData.nom);
+        
+        formDataObject.append('email', formData.email);
         formDataObject.append('mdp', formData.mdp);
-       
-    
+
+        // console.log(formData.email,formData.mdp);
         
     
-        fetch('http://localhost:3202/login_in', {
+        
+        
+        const dataLoging = await fetch('http://localhost:3202/login_in', {
           method: 'POST',
           body: formDataObject,
 
         })
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-        try{
-            // if(formData.nom==="Sergio"){
-            //     console.log(formData);
-            //     setLog(0)
-            // }else if(formData.nom==="Paul"){
-            //     setLog(1)
-            // }
-        }catch (error){
 
-        }
-        
+        var result = await dataLoging.json()
+        console.log(result);
+
+        // console.log(result);
+          // .then(response => response.json())
+          // .then(data => {
+          //   console.log(data);
+            if(formData.email==="rh_dep@gmail.com"){
+              
+              login = 1
+                  // setLog(1)
+                  // console.log(login);
+              }else if(formData.email===result.data.email){
+                login = 0
+                  // setLog(0)
+              }
+              
+          // })
+          // .catch(error => {
+          //   console.error(error);
+          // });
+          
+          
+          setTimeout(() => {
+              if(login==0){
+                console.log(login);
+                // navigate("/Back_office/HomeDepartment")
+              
+                window.location="/Back_office/HomeDepartment"
+                  // return <Navigate to="/Back_office/HomeDepartment"  />
+              }else if(login==1){
+                console.log(login);
+                window.location="/Back_office/HomeBackOffice"
+                // navigate("/Back_office/HomeBackOffice")
+                  // return <Navigate to="/Back_office/HomeBackOffice"  />
+              }
+          }, 10000);
         // checkLogin({data:formData,setLog:setLog})
         
       };
 
-        if(log==0){
-            return <Navigate to="/Back_office/HomeDepartment"  />
-        }else if(log==1){
-            return <Navigate to="/Back_office/HomeBackOffice"  />
-        }
+      
+        
+        
+      
+        
   return <>
+  
  <div className='login-container'>
             <div className='left'>
                     <div className=''>
@@ -90,7 +103,7 @@ function Login({log,setLog,foncSetLogin}) {
                             <div className='_1'>Welcome back</div>
                             <div className='_2'>Welcome back please enter your details</div>
                         </div>
-                        <InputPerso fonction={handleChange}  type={"text"} classN={"inputLoginNom"} couleurLabel={"loginLabelInput"} name={"nom"} labelTexte={"Nom"} />
+                        <InputPerso fonction={handleChange}  type={"email"} classN={"inputLoginNom"} couleurLabel={"loginLabelInput"} name={"email"} labelTexte={"Email"} />
                         <InputPerso fonction={handleChange} type={"password"} classN={"inputLoginMdp"} couleurLabel={"loginLabelInput"} name={"mdp"} labelTexte={"Password"} />
                         <ButtonPerso type={"submit"} texte={"Sign in"} classN={"btn-perso"} container_class={"container-btn"}/>
                     </form>
@@ -102,15 +115,6 @@ function Login({log,setLog,foncSetLogin}) {
         </div>
 
 
-  {/* <Routes >
-    <Route path="/Back_office">
-        <Route path='HomeDepartment' element={<HomeDepartement />}/>
-        <Route path='HomeBackOffice' element={<HomeBackOffice setLog={setLog}/>}/>
-    </Route>
-
-    <Route path='/HomeDepartment' element={<HomeDepartement setLog={setLog}/>}/>
-    <Route path='/HomeBackOffice' element={<HomeBackOffice setLog={setLog}/>}/>
-  </Routes> */}
   
   
   

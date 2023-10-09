@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Logo from './../../../assets/img/Logo.svg'
 import './../../css/SideBar.css'
 import { Navigate } from 'react-router-dom'
+import { Fetch } from '../../../Fetch'
 
     
     function SideBar_item({items,setNumP,funcService,setLog,foncSetLogin}) {
@@ -31,9 +32,13 @@ import { Navigate } from 'react-router-dom'
                         funcService('')
                     }else if(item.texte=="Deconnexion"){
                         setLog(-1)//eto lay mamono session
+                        Fetch({path:"/disconnect",method:"POST"})
                         funcService('')
                         console.log("deconnexion");
                         foncSetLogin(2)
+                    }else if(item.texte=="Entretien"){
+                        setNumP(4)
+                        funcService('')
                     }
                 }}>
                     <div className={`active-element ${index===itemActive?"on":""}`}>.</div>

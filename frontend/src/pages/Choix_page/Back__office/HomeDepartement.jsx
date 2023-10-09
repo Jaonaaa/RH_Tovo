@@ -3,12 +3,16 @@ import Side_bar from '../../../Composant/jsx/composant_BackOffice/side_bar'
 import { ContentDepartement } from './ContentBackOffice'
 import Icon from '../../../Icon'
 import { useState } from 'react'
-import Fetch from '../../../Fetch'
-import { Fetch2 } from '../../../Fetch'
+
+import { Fetch2,Fetch } from '../../../Fetch'
 import { Navigate } from 'react-router-dom'
 
 
 function HomeDepartement({setLog,foncLogin,foncSetLogin}) {
+
+  const token =  Fetch({path:"/getToken",method:"POST"})
+  const [tokenDep,setTokenDep] = useState(token)
+  
   const idDep = 1
   const dataD =  Fetch2({path:"/getRequestByDepartement",idD:idDep})
   const [dataDemande,setDataDemande] = useState(dataD)
@@ -16,6 +20,10 @@ function HomeDepartement({setLog,foncLogin,foncSetLogin}) {
   console.log("departement");
     dataD.then((data)=>{
       setDataDemande(data.data)
+    })
+    token.then((tokenD)=>{
+      setTokenDep(tokenD)
+      console.log(tokenD);
     })
   },[])
  

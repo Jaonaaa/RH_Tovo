@@ -13,12 +13,12 @@ import Rh from './../../../assets/img/humain.svg'
 
 import Side_bar from './../../../Composant/jsx/composant_BackOffice/side_bar';
 import { ContentBackOffice } from './ContentBackOffice'
-import { Fetch } from '../../../Fetch'
+import { Fetch,Fetch2 } from '../../../Fetch'
 import Icon from '../../../Icon'
 import { useEffect } from 'react'
-import { Fetch2 } from '../../../Fetch'
 import { logDOM } from '@testing-library/react'
 import { Navigate } from 'react-router-dom'
+
 
 
 let listeService = [
@@ -36,6 +36,8 @@ let contentAnnonce = [
 
 
  function HomeBackOffice({setLog,foncLogin,foncSetLogin}) {
+    const token =  Fetch({path:"/getToken",method:"POST"})
+    const [tokenDep,setTokenDep] = useState(token)
   
     const dataDep =  Fetch({path:"/getAllDepartement",method:"GET"})
     const allDemande = Fetch({path:"/getRequestAllDepartement",method:"POST"})
@@ -43,6 +45,12 @@ let contentAnnonce = [
     const [dataDemande,setDataDemande] = useState(allDemande)
     const [listeServices,setListeService] = useState(listeService)
     useEffect(()=>{
+      // token
+      token.then((tokenD)=>{
+        setTokenDep(tokenD)
+        console.log(tokenD);
+      })
+      
       // data demande service
       allDemande.then((dataDS)=>{
           setDataDemande(dataDS.data)
