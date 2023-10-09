@@ -8,13 +8,14 @@ import cors from "cors";
  */
 export const setUpApp = (app) => {
   const corsOptions = {
-    origin: "*", // Only allow requests from this origin
+    origin: true, // Only allow requests from this origin
     methods: "GET,POST", // Allow only specific HTTP methods
     allowedHeaders: "*", // Allow only specific headers
+    credentials: true,
   };
   app.use(
     session({
-      secret: "secreteKeyyy ",
+      secret: "secreteKeyyy",
       resave: true,
       saveUninitialized: true,
     })

@@ -85,7 +85,6 @@ export const checkLogin = async (req, email, mdp) => {
   let login = await getLogin(null, email, mdp);
   if (login) {
     req.session.userOn = login;
-    console.log(req.session.userOn);
     return buildResponse("good", "", login);
   } else return buildResponse("error", "Aucun utilisateur correspondant");
 };

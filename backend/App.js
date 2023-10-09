@@ -5,7 +5,6 @@ import { uploads } from "./Config.js";
 import { routersAdmin } from "./routers/Admin.js";
 import { routersLogin } from "./routers/Login.js";
 import { setUpApp } from "./utils/AppOptions.js";
-import { getAllAnnonce } from "./models/Annonce/Annonce.js";
 
 const app = express();
 const port = 3202;
