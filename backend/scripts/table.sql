@@ -66,7 +66,8 @@ CREATE TABLE IF NOT EXISTS annonce_details (
 CREATE TABLE IF NOT EXISTS critere_par_defaut (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(50),
-    id_question_reponse_p INT REFERENCES question_reponse_p (id) ON DELETE CASCADE
+    id_question_reponse_p INT REFERENCES question_reponse_p (id) ON DELETE CASCADE,
+    coeff NUMERIC(10,2) 
 );
 
 CREATE TABLE IF NOT EXISTS candidat (
@@ -143,9 +144,9 @@ INSERT INTO question_reponse_p VALUES (default,1);
 INSERT INTO reponse_p VALUES (1,'Bacc',true);
 INSERT INTO reponse_p VALUES (1,'Licence',true);
 INSERT INTO reponse_p VALUES (1,'Master',true);
-INSERT INTO critere_par_defaut VALUES (default,'Diplome',1);
+INSERT INTO critere_par_defaut VALUES (default,'Diplome',1,5);
 -- Expérience 
 INSERT INTO question_reponse_p VALUES (default,3);
-INSERT INTO critere_par_defaut VALUES (default,'Expérience',2)
+INSERT INTO critere_par_defaut VALUES (default,'Expérience',2,4)
 -- gereo conflit eee XDD
 -- zay fa vita pull e

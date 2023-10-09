@@ -164,6 +164,8 @@ export const getAnnonceDefaultData = async () => {
         client,
         critere.id_question_reponse_p
       );
+      questionsReponses.label = critere.nom;
+      questionsReponses.coeff = critere.coeff;
       allCritere.push(questionsReponses);
     }
 
