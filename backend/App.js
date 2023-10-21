@@ -5,6 +5,7 @@ import { uploads } from "./Config.js";
 import { routersAdmin } from "./routers/Admin.js";
 import { routersLogin } from "./routers/Login.js";
 import { setUpApp } from "./utils/AppOptions.js";
+import { routersCV } from "./routers/CV.js";
 
 const app = express();
 const port = 3202;
@@ -18,6 +19,7 @@ app.get("/", async (req, res) => {
 
 routersAdmin(app, uploads);
 routersLogin(app, uploads);
+routersCV(app, uploads);
 
 // mila precisena mitovy am "file" io ny anarana ny <input type="file" name=$$ />
 app.post("/uploads", uploads.array("file"), (req, res) => {

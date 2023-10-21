@@ -76,19 +76,25 @@ CREATE TABLE IF NOT EXISTS candidat (
     code_id VARCHAR(50) 
 );
 
-CREATE TABLE IF NOT EXISTS cv_candidat_details (
-    id SERIAL PRIMARY KEY,
-    label_critere VARCHAR(150),
-    par_defaut boolean,
-    valeur VARCHAR(40)
-);
-
 CREATE TABLE IF NOT EXISTS annonce_cv_candidat (
     id SERIAL PRIMARY KEY ,
     id_annonce INT REFERENCES annonce (id) ON DELETE CASCADE ,
     date_depot timestamp NOT NULL ,
-    id_candidat INT REFERENCES candidat (id) ON DELETE CASCADE,
-    id_cv_candidat_details INT REFERENCES cv_candidat_details ON DELETE CASCADE
+    id_candidat INT REFERENCES candidat (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS cv_candidat_details (
+    id SERIAL PRIMARY KEY,
+    id_annonce_cv_candidat INT REFERENCES annonce_cv_candidat (id)  ON DELETE CASCADE ,
+    valeur NUMERIC(15,2)
+);
+
+CREATE TABLE IF NOT EXISTS qualified_test (
+    id SERIAL PRIMARY KEY,
+    id_candidat INT REFERENCES candidat (id)  ON DELETE CASCADE ,
+    id_annonce INT REFERENCES annonce (id) ON DELETE CASCADE ,
+    score NUMERIC(10,2) ,
+    validate BOOLEAN 
 );
 
 CREATE TABLE IF NOT EXISTS employer (

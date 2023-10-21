@@ -40,6 +40,8 @@ export const routersAdmin = (app, uploads) => {
     );
     res.json(response);
   });
+  //
+  ///
   // Requete par departement
   app.post("/registerRequestDepartement", uploads.none(), async (req, res) => {
     let data = JSON.parse(req.body.data);
@@ -72,13 +74,13 @@ export const routersAdmin = (app, uploads) => {
     let data = await getAllAnnonce();
     res.json(buildResponse("good", "", data));
   });
-  app.get("/getAllAnnonceByDept", uploads.none(), async (req, res) => {
-    let data = await getAllAnnonceByDept(null, 1);
+  app.get("/getAllAnnonceByDept/:id", uploads.none(), async (req, res) => {
+    let data = await getAllAnnonceByDept(null, req.params.id);
     res.json(buildResponse("good", "", data));
   });
   // tadiavina kely maka valeur ana parametre am GET
-  app.get("/getAnnonce", uploads.none(), async (req, res) => {
-    let data = await getAnnonce(null, 16);
+  app.get("/getAnnonce/:id", uploads.none(), async (req, res) => {
+    let data = await getAnnonce(null, req.params.id);
     res.json(buildResponse("good", "", data));
   });
   //
@@ -92,24 +94,3 @@ export const routersAdmin = (app, uploads) => {
     res.json(result);
   });
 };
-
-// let drd = {
-//   id: 0,
-//   vol_tache: 5,
-//   vol_horaire: 8,
-//   vol_hommme_jour: 2,
-// };
-// let rd = {
-//   id: 0,
-//   id_details_requete_departement: 10,
-//   date_requete: getTimeNow(),
-//   id_departement: 1,
-// };
-
-// let response = await registerDepartementRequest(rd, drd);
-// console.log(response);
-
-// insertDefaultCriteria("Diplome");
-// insertDefaultCriteria("Localisation");
-// insertDefaultCriteria("Expérience");
-// insertDefaultCriteria("Situation matrimoniale");
