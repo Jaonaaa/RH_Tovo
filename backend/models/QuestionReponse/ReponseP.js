@@ -1,6 +1,7 @@
 import Client from "pg";
 
 export const reponse_p = {
+  id: 1,
   id_question_reponse_p: 10,
   label: "",
   correct: true,
@@ -47,7 +48,7 @@ export const registerReponses = async (
     inner = true;
   }
   try {
-    await client.query("INSERT INTO reponse_p VALUES ($1,$2,$3)", [
+    await client.query("INSERT INTO reponse_p VALUES (default,$1,$2,$3)", [
       id_question_reponse_p,
       label,
       correct,

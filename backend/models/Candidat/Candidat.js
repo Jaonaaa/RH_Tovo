@@ -21,7 +21,7 @@ export const registerCandidat = async (client = null, nom) => {
   }
   let reponse = null;
   try {
-    let code_candidat = generateCode(6);
+    let code_candidat = generateCode(8);
     if (inner) await client.query("BEGIN TRANSACTION");
     await client.query("INSERT INTO candidat VALUES (default, $1,$2)", [
       nom,

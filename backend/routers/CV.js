@@ -28,7 +28,8 @@ export const routersCV = (app, uploads) => {
       null,
       data.code_candidat,
       data.id_annonce,
-      data.details_cv
+      data.details_cv,
+      data.nom
     );
     res.json(result);
   });
@@ -38,4 +39,24 @@ export const routersCV = (app, uploads) => {
     let result = await confirmQualifiedTest(null, data.id);
     res.json(result);
   });
+};
+
+let exaample = {
+  data: {
+    nom: "Mark",
+    code_candidat: null,
+    id_annonce: 16,
+    details_cv: [
+      {
+        id_annonce_details: 7,
+        id_question_reponse_p: 21,
+        reponses: "Test 1",
+      },
+      {
+        id_annonce_details: 8,
+        id_question_reponse_p: 22,
+        reponses: "",
+      },
+    ],
+  },
 };

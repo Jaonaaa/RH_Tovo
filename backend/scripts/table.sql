@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS question_reponse_p (
 );
 
 CREATE TABLE IF NOT EXISTS reponse_p (
+    id SERIAL PRIMARY KEY,
     id_question_reponse_p int REFERENCES question_reponse_p (id) ON DELETE CASCADE,
     label VARCHAR(150),
     correct boolean NOT NULL
@@ -86,7 +87,8 @@ CREATE TABLE IF NOT EXISTS annonce_cv_candidat (
 CREATE TABLE IF NOT EXISTS cv_candidat_details (
     id SERIAL PRIMARY KEY,
     id_annonce_cv_candidat INT REFERENCES annonce_cv_candidat (id)  ON DELETE CASCADE ,
-    valeur NUMERIC(15,2)
+    valeur NUMERIC(15,2),
+    id_annonce_details INT REFERENCES annonce_details (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS qualified_test (
@@ -147,12 +149,28 @@ INSERT INTO question VALUES (default,'Text');
 -- critere par default 
 -- diplome 
 INSERT INTO question_reponse_p VALUES (default,1);
-INSERT INTO reponse_p VALUES (1,'Bacc',true);
-INSERT INTO reponse_p VALUES (1,'Licence',true);
-INSERT INTO reponse_p VALUES (1,'Master',true);
+INSERT INTO reponse_p VALUES (default,1,'Bacc',true);
+INSERT INTO reponse_p VALUES (default,1,'Licence',true);
+INSERT INTO reponse_p VALUES (default,1,'Master',true);
 INSERT INTO critere_par_defaut VALUES (default,'Diplome',1,5);
 -- Expérience 
 INSERT INTO question_reponse_p VALUES (default,3);
 INSERT INTO critere_par_defaut VALUES (default,'Expérience',2,4)
 -- gereo conflit eee XDD
--- zay fa vita pull e
+
+--Testeo le function , ataovy valeur mi existe amzay aloha 
+-- calcul anleh note jereo kao aona ny hanaovana azy
+-- de veo vita zay rehetra zay de le test amzay asurreo
+
+
+--  SELECT * FROM annonce_details JOIN reponse_p ON annonce_details.id_question_reponse_p
+-- = reponse_p.id_question_reponse_p   where id_annonce = 16 ;
+
+-- INSERT INTO reponse_p VALUES (default,21,'Test 1',true);
+-- INSERT INTO reponse_p VALUES (default,21,'Test 2',false);
+
+
+-- INSERT INTO reponse_p VALUES (default,22,'French',true);
+-- INSERT INTO reponse_p VALUES (default,22,'English',true);
+-- INSERT INTO reponse_p VALUES (default,22,'Japanese',false);
+

@@ -23,7 +23,8 @@ export const registerAnnonceCV = async (
   client = null,
   code_candidat = null,
   id_annonce,
-  details_cv
+  details_cv,
+  nom = "unknown"
 ) => {
   let response = null;
   let inner = false;
@@ -34,16 +35,22 @@ export const registerAnnonceCV = async (
   try {
     await client.query("BEGIN TRANSACTION");
     // le nom aona
-    let candidat = await checkCandidat(client, code_candidat, "peter");
-    let annonce_cv = await insertAnnonceCv(client, candidat.id, id_annonce);
+    let candidat = await checkCandidat(client, code_candidat, nom);
+    let annonce_cv_candidat = await insertAnnonceCv(
+      client,
+      candidat.id,
+      id_annonce
+    );
     let points = 0;
     for (let i = 0; i < details_cv.length; i++) {
       points += await registerCvCandidatDetails(
         client,
         details_cv[i],
-        annonce_cv.id
+        annonce_cv_candidat.id,
+        id_annonce
       );
     }
+
     await addToWaitingList(client, {
       id_candidat: candidat.id,
       id_annonce: id_annonce,
@@ -52,7 +59,7 @@ export const registerAnnonceCV = async (
 
     response = buildResponse("good", `Cv registred`, {
       candidat: candidat,
-      annonce_cv: annonce_cv,
+      annonce_cv_candidat: annonce_cv_candidat,
     });
     await client.query("COMMIT");
   } catch (err) {
